@@ -1,3 +1,5 @@
+import pygame
+
 class Settings:
     def __init__(self):
         # screen settings
@@ -12,3 +14,10 @@ class Settings:
         self.score = 0
         self.high_score = 0
         self.hs_file = 'highscore.txt'
+
+        #stats
+        self.coins = 0
+        self.time = 300
+
+        #music and sounds
+        pygame.mixer.music.load('sounds/maintheme.wav')

@@ -14,7 +14,7 @@ class Game:
         pygame.display.set_caption("Super Mario Bros.!")
 
         self.menu = Menu(self.screen, 'Super Mario Bros', 'TOP - ')
-        self.sb = Scoreboard(self.ai_settings, self. screen)
+        self.sb = Scoreboard(self.ai_settings, self.screen)
         self.load_data()
 
     def load_data(self):
@@ -28,7 +28,7 @@ class Game:
     def play(self):
         eloop = EventLoop(self.ai_settings.finished)
         self.load_data()
-
+        pygame.mixer.music.play(0)
         while not eloop.finished:
             eloop.check_events(self.ai_settings, self.menu)
             self.sb.check_high_score(self.sb)
@@ -45,7 +45,7 @@ class Game:
             self.menu.draw_menu()
 
         else:
-            self.sb.show_score()
+            self.sb.show_stats()
 
         pygame.display.flip()
 
