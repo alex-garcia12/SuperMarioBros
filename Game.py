@@ -11,7 +11,7 @@ class Game:
         pygame.init()
         self.ai_settings = Settings()
         self.screen = pygame.display.set_mode((self.ai_settings.screen_width, self.ai_settings.screen_height))
-        pygame.display.set_caption("Super Mario Bros.!")
+        pygame.display.set_caption("Super Mario Bros.")
 
         self.menu = Menu(self.screen, 'Super Mario Bros', 'TOP - ')
         self.sb = Scoreboard(self.ai_settings, self.screen)
