@@ -3,6 +3,8 @@ from menu import Menu
 from scoreboard import Scoreboard
 from settings import Settings
 from eventloop import EventLoop
+from map import Map
+from mario import Mario
 from os import path
 
 class Game:
@@ -14,6 +16,8 @@ class Game:
         pygame.display.set_caption("Super Mario Bros.")
 
         self.menu = Menu(self.screen, 'Super Mario Bros', 'TOP - ')
+        self.map = Map(self.screen, 'images/map.txt', 'stone_block')
+        self.mario = Mario(self.ai_settings, self.screen, self.map, self)
         self.sb = Scoreboard(self.ai_settings, self.screen)
         self.load_data()
 
@@ -28,24 +32,26 @@ class Game:
     def play(self):
         eloop = EventLoop(self.ai_settings.finished)
         self.load_data()
-        pygame.mixer.music.play(0)
+
         while not eloop.finished:
-            eloop.check_events(self.ai_settings, self.menu)
-            self.sb.check_high_score(self.sb)
+            eloop.check_events(self.ai_settings, self.menu, self.mario)
             self.update_screen()
+            self.mario.update(self.map.stone)
+            self.sb.check_high_score(self.sb)
 
     def update_screen(self):
         self.screen.fill(self.ai_settings.bg_color)
+        self.sb.prep_high_score()
 
         if not self.ai_settings.finished:
             self.menu.blitme()
-            self.sb.check_high_score(self.sb)
-            self.sb.prep_high_score()
-            self.sb.display_high_score()
             self.menu.draw_menu()
+            self.sb.display_high_score()
 
         else:
             self.sb.show_stats()
+            self.map.blitme()
+            self.mario.blitme()
 
         pygame.display.flip()
 
