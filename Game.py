@@ -47,6 +47,14 @@ class Game:
             self.update_screen()
             self.sb.check_high_score(self.sb)
 
+            if self.enemies.g_rect.left == self.ai_settings.screen_width:
+                Mobs(self.ai_settings, self.screen, self.map, self)
+
+            # maybe change this depending on coordinates rather than time
+            # now = pygame.time.get_ticks()
+            # if now - self.ai_settings.mob_timer > 5000:
+
+
     def update_screen(self):
         eloop = EventLoop(self.ai_settings.finished, self.ai_settings.display_lives)
         self.screen.fill(self.ai_settings.bg_color)

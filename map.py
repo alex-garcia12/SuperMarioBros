@@ -46,6 +46,10 @@ class Map:
         self.deltax = self.deltay = Map.BLOCK_SIZE
         self.spawnx = 0
         self.spawny = 0
+        self.g_spawnx = 0
+        self.g_spawny = 0
+        self.k_spawnx = 0
+        self.k_spawny = 0
         self.map_shift = 0
 
         self.build()
@@ -93,8 +97,12 @@ class Map:
                 if col == 'C':
                     self.castle.append(pygame.Rect(ncol * dx, nrow * dy, self.cas.rect.width, self.cas.rect.height))
                 if col == 'g':
+                    self.g_spawnx = ncol * dx
+                    self.g_spawny = nrow * dy
                     self.goombas.append(pygame.Rect(ncol * dx, nrow * dy, self.goom.rect.width, self.goom.rect.height))
                 if col == 'k':
+                    self.k_spawnx = ncol * dx
+                    self.k_spawny = nrow * dy
                     self.koopas.append(pygame.Rect(ncol * dx, nrow * dy, self.koop.rect.width, self.koop.rect.height))
 
     # shift blocks depending on mario's relation to the middle of the screen to simulate scrolling

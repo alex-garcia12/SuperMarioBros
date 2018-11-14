@@ -27,6 +27,9 @@ class Settings:
         self.gravity = 0.015
         self.mario_lives = 3
 
+        #enemy settings
+        self.mob_timer = 0
+
         # scoring
         self.score = 0
         self.high_score = 0

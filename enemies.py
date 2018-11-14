@@ -25,22 +25,19 @@ class Mobs(Sprite):
         self.k_image = self.k_walk_frames_r[0]
 
         self.g_rect = self.g_image.get_rect()
-        self.g_rect.centerx = self.screen_rect.width / 2
+        self.g_rect.centerx = self.map.g_spawnx
+        self.g_rect.centery = self.map.g_spawny
         self.g_center = float(self.g_rect.centerx)
         self.g_vx = 1
         if self.g_rect.right == self.screen_rect.width:
             self.g_vx *= -1
-        self.g_rect.y = self.screen_rect.height / 4
         self.vy = 0
 
         self.k_rect = self.k_image.get_rect()
-        self.k_rect.centerx = self.screen_rect.width / 2
+        self.k_rect.centerx = self.map.k_spawnx
+        self.k_rect.centery = self.map.k_spawny
         self.k_center = float(self.k_rect.centerx)
         self.k_vx = 0.5
-        if self.k_rect.centerx > self.screen_rect.width:
-            self.k_vx *= -1
-        self.k_rect.y = self.screen_rect.height / 4
-        self.vy = 0
 
     def load_images(self):
         self.g_walk_frames_r = [pygame.image.load('images/goomba.png'),
@@ -80,6 +77,8 @@ class Mobs(Sprite):
             self.k_rect.bottom = bottom
 
     def update(self):
+        print('spawn x:', self.map.k_spawnx)
+        print('spawn y:', self.map.k_spawny)
         self.g_animate()
         self.k_animate()
         self.g_rect.x += self.g_vx
