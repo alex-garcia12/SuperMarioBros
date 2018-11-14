@@ -19,7 +19,7 @@ class Game:
 
         self.screen_rect = self.screen.get_rect()
         self.map = Map(self.screen, 'images/world1-1.txt', 'rock_block', 'metal_block', 'stone_block', 'brick_block',
-                       'question_block', 'pipe-1', 'pipe-2', 'super_coin-1')
+                       'question_block', 'pipe-1', 'pipe-2', 'super_coin-1', 'pole', 'flag', 'top', 'castle')
         self.mario = Mario(self.ai_settings, self.screen, self.map, self)
         self.menu = Menu(self.screen, 'Super Mario Bros', 'TOP - ', 'SCORE', 'COINS', 'TIME', self.ai_settings, self.mario)
         self.sb = Scoreboard(self.ai_settings, self.screen)
@@ -80,7 +80,7 @@ class Game:
             #print('pos - y')
             #print(self.mario.pos.y)
             if float(self.mario.pos.x) + float(self.mario.acc.x) >= float(self.ai_settings.screen_half_width) \
-                    and self.mario.moving_right:
+                    and abs(float(self.mario.vel.x)) > 0:
                 diff = float(self.mario.pos.x) - self.ai_settings.screen_half_width
                 #print('diff')
                 #print(diff)

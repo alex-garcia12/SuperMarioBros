@@ -13,6 +13,7 @@ class Settings:
         self.theme = pygame.mixer.music.load('sounds/super_mario_bros_theme.wav')
         self.jump_sound = pygame.mixer.Sound('sounds/jump.wav')
         self.death = pygame.mixer.Sound('sounds/death.wav')
+        self.coin_get = pygame.mixer.Sound('sounds/coin.wav')
 
         # game_active flag
         self.finished = False
