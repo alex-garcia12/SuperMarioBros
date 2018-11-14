@@ -5,6 +5,7 @@ from settings import Settings
 from eventloop import EventLoop
 from map import Map
 from mario import Mario
+from enemies import Mobs
 from os import path
 from time import sleep
 
@@ -19,8 +20,9 @@ class Game:
 
         self.screen_rect = self.screen.get_rect()
         self.map = Map(self.screen, 'images/world1-1.txt', 'rock_block', 'metal_block', 'stone_block', 'brick_block',
-                       'question_block', 'pipe-1', 'pipe-2', 'super_coin-1', 'pole', 'flag', 'top', 'castle')
+                       'question_block', 'pipe-1', 'pipe-2', 'super_coin-1', 'pole', 'flag', 'top', 'castle', 'goomba', 'koopa')
         self.mario = Mario(self.ai_settings, self.screen, self.map, self)
+        self.enemies = Mobs(self.ai_settings, self.screen, self.map, self)
         self.menu = Menu(self.screen, 'Super Mario Bros', 'TOP - ', 'SCORE', 'COINS', 'TIME', self.ai_settings, self.mario)
         self.sb = Scoreboard(self.ai_settings, self.screen)
         self.load_data()
@@ -41,6 +43,7 @@ class Game:
             eloop.check_events(self.ai_settings, self.menu, self.mario)
             self.mario.update(self.map.rock, self.map.metal, self.map.stone, self.map.brick, self.map.q, self.map.pipe,
                               self.map.pipe_1, self.map.coins)
+            self.enemies.update()
             self.update_screen()
             self.sb.check_high_score(self.sb)
 
@@ -98,6 +101,7 @@ class Game:
             # =========================================================================================================
             self.map.blitme()
             self.mario.blitme()
+            self.enemies.blitme()
             if self.mario.death == True:
                 self.menu.prep_lives()
                 self.menu.draw_lives()
