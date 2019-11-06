@@ -22,6 +22,12 @@ Doesn't Really Work
 
 -Physics aren't quite right
 
--Collision is finicky between the player and blocks, walls, etc.
+-Collision is finicky between the player and blocks, walls, etc. Often times, the player collides with nothing.
 
 -Interactions with blocks, enemies, etc. are not fully implemented.
+
+==============================================================================
+
+![Mario Title Screen](https://cdn.discordapp.com/attachments/489600593741086723/641653719900880906/title.png)
+![Mario Mid-Game](https://cdn.discordapp.com/attachments/489600593741086723/641653721536659477/level.png)
+![Mario Lives](https://cdn.discordapp.com/attachments/489600593741086723/641657227777933340/lives.png)
